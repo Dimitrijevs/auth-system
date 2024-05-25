@@ -17,16 +17,16 @@ body {
 }
 
 .card {
-    @apply p-4 rounded-sm bg-container-lighter shadow;
+    @apply p-10 rounded-sm bg-container-lighter shadow;
 }
 
 .actions-toolbar {
-    @apply mt-6 border-t border-container-darker pt-4 flex justify-between flex-row-reverse items-center
+    @apply mt-6 border-t border-container-darker pt-4 flex justify-between flex-row-reverse items-center;
 }
 
 
 #customer-login-container {
-    @apply flex flex-col justify-between py-8;
+    @apply flex flex-col justify-between py-4;
 
     @screen md {
         @apply flex-row;

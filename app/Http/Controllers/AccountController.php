@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class AccountController extends Controller
 {
-
     /**
      * Display my account page
      *
@@ -26,7 +27,26 @@ class AccountController extends Controller
      */
     public function login(Request $request)
     {
-        // implement login functionality
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|max:255',
+            'password' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/')->with('errorMessage', "Data is not valid");
+        }
+
+        $user = User::where('email', $request->input('email'))->first();
+
+        if (!$user || !password_verify($request->input('password'), $user->password)) {
+            return redirect('/')->with('errorMessage', 'Invalid email or password');
+        }
+
+        Auth::login($user);
+
+        if (auth()->user()) {
+            return redirect('/success');
+        }
     }
 
 
@@ -36,9 +56,9 @@ class AccountController extends Controller
      */
     public function logout()
     {
-        // implement logout functionality
+        Auth::logout();
 
-        return redirect('/');
+        return redirect('/')->with('successMessage', 'User logged out successfully!');
     }
 
     /**
@@ -48,7 +68,26 @@ class AccountController extends Controller
      */
     public function register(Request $request)
     {
-        // implement register functionality
+        $validator = Validator::make($request->all(), [
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|confirmed|min:8|regex:/^(?=.*[a-zA-Z])(?=.*\d).+$/',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/')->with('errorMessage', "Data is not valid");
+        }
+
+        $user = new User();
+        $user->firstname = $request->input('firstname');
+        $user->lastname = $request->input('lastname');
+        $user->email = $request->input('email');
+        $user->password = bcrypt($request->input('password'));
+        $user->subscribed = $request->input('subscribed');
+        $user->save();
+
+        return redirect('/')->with('successMessage', 'User registered successfully!');
     }
 
     /**
@@ -57,11 +96,13 @@ class AccountController extends Controller
      */
     public function success()
     {
-        // implement check if the user is authorized
-        if (true) {
-            return view('page.success')->with(['firstname' => 'John', 'lastname' => 'Smith']);
+        $firstname = auth()->user()->firstname;
+        $lastname = auth()->user()->lastname;
+
+        if (isset($firstname) && isset($lastname)) {
+            return view('page.success', ['firstname' => $firstname, 'lastname' => $lastname]);
         }
 
-        return redirect('/');
+        return redirect('/')->with('errorMessage', 'You are not authorized to view this page');
     }
 }
