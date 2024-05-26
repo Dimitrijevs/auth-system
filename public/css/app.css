@@ -991,9 +991,6 @@ select {
 .min-h-0 {
   min-height: 0px;
 }
-.w-3\/5 {
-  width: 60%;
-}
 .w-4 {
   width: 1rem;
 }
@@ -1018,17 +1015,11 @@ select {
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
-.flex-row {
-  flex-direction: row;
-}
 .flex-col {
   flex-direction: column;
 }
 .flex-wrap {
   flex-wrap: wrap;
-}
-.items-start {
-  align-items: flex-start;
 }
 .items-center {
   align-items: center;
@@ -1324,10 +1315,7 @@ fieldset ~ fieldset {
   border-radius: 0.375rem;
   border-width: 1px;
   --tw-border-opacity: 1;
-  border-color: rgb(209 213 219 / var(--tw-border-opacity));
-  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  border-color: rgb(212 212 216 / var(--tw-border-opacity));
 }
 .form-input:focus,
 .form-email:focus,
@@ -1568,10 +1556,6 @@ a:active {
     margin-right: 0.5rem;
   }
 
-  .md\:flex {
-    display: flex;
-  }
-
   .md\:h-6 {
     height: 1.5rem;
   }
@@ -1584,24 +1568,12 @@ a:active {
     width: 1.5rem;
   }
 
-  .md\:w-full {
-    width: 100%;
-  }
-
   .md\:flex-row {
     flex-direction: row;
   }
 
-  .md\:flex-col {
-    flex-direction: column;
-  }
-
   .md\:items-start {
     align-items: flex-start;
-  }
-
-  .md\:items-center {
-    align-items: center;
   }
 }
 
@@ -1637,6 +1609,10 @@ a:active {
 
   .lg\:min-h-0 {
     min-height: 0px;
+  }
+
+  .lg\:w-3\/5 {
+    width: 60%;
   }
 
   .lg\:w-auto {

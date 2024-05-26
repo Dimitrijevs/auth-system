@@ -28,7 +28,7 @@ class AccountController extends Controller
     public function login(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email|max:255',
+            'login-email' => 'required|email|max:255',
             'password' => 'required',
         ]);
 
@@ -36,7 +36,7 @@ class AccountController extends Controller
             return redirect('/')->with('errorMessage', "Data is not valid");
         }
 
-        $user = User::where('email', $request->input('email'))->first();
+        $user = User::where('email', $request->input('login-email'))->first();
 
         if (!$user || !password_verify($request->input('password'), $user->password)) {
             return redirect('/')->with('errorMessage', 'Invalid email or password');
@@ -71,7 +71,7 @@ class AccountController extends Controller
         $validator = Validator::make($request->all(), [
             'firstname' => 'required',
             'lastname' => 'required',
-            'email' => 'required|email|max:255|unique:users',
+            'register-email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:8|regex:/^(?=.*[a-zA-Z])(?=.*\d).+$/',
         ]);
 
@@ -82,7 +82,7 @@ class AccountController extends Controller
         $user = new User();
         $user->firstname = $request->input('firstname');
         $user->lastname = $request->input('lastname');
-        $user->email = $request->input('email');
+        $user->email = $request->input('register-email');
         $user->password = bcrypt($request->input('password'));
         $user->subscribed = $request->input('subscribed');
         $user->save();

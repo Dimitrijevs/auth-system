@@ -21,23 +21,25 @@
                 </div>
                 <div class="w-full mb-8">
                     <div aria-labelledby="block-customer-login-heading" class="card mr-4">
-                        <form class="form form-login" action="{{ url('login') }}" method="post" id="customer-login-form">
+                        <form class="form form-login" action="{{ url('login') }}" method="post" id="customer-login-form"
+                            x-data="{ loginEmail: '', submitted: false }" @submit.prevent="submitted = true; $el.submit()">
                             @csrf
 
                             <fieldset class="fieldset login">
                                 <h6 class="uppercase tracking-widest text-base mb-4">
                                     Login
                                 </h6>
-                                <div class="text-gray-600 mb-4 tracking-wider w-3/5 md:w-full">
+                                <div class="text-gray-600 mb-4 tracking-wider w-full lg:w-3/5">
                                     If you have an account, sign in with your email address.
                                 </div>
                                 <div class="field mb-3">
-                                    <label class="label tracking-wider" for="email">
+                                    <label class="label tracking-wider" for="login-email">
                                         <span>Email</span>
                                     </label>
                                     <div class="control">
-                                        <input data-test="login-email" name="email" class="form-input" required=""
-                                            value="" autocomplete="off" id="email" type="email" title="Email">
+                                        <input data-test="login-email" name="login-email" class="form-input" required
+                                            x-model="loginEmail" autocomplete="off" id="login-email" type="email"
+                                            title="Email" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
                                     </div>
                                 </div>
                                 <div class="field">
@@ -76,9 +78,10 @@
                 </div>
                 <div class="w-full mb-8">
                     <div class="card md:my-0 my-2">
-                        <form class="form form-login" action="{{ url('register') }}" method="post" id="customer-register-form">
+                        <form class="form form-login" action="{{ url('register') }}" method="post"
+                            id="customer-register-form">
                             @csrf
-    
+
                             <div>
                                 <h6 class="uppercase tracking-widest text-base mb-4" role="heading" aria-level="2">
                                     Personal Information
@@ -90,46 +93,51 @@
                                 </label>
                                 <div class="control">
                                     <input data-test="register-firstName" class="form-input" required="" value=""
-                                        autocomplete="off" id="firstname" name="firstname" type="text" title="First Name">
+                                        autocomplete="off" id="firstname" name="firstname" type="text" title="First Name"
+                                        pattern="[a-zA-Z\s]+">
                                 </div>
                             </div>
-    
+
                             <div class="field mb-8">
                                 <label class="label" for="lastname">
                                     <span>Last Name</span>
                                 </label>
                                 <div class="control">
                                     <input data-test="register-lastName" name="lastname" class="form-input" required=""
-                                        value="" autocomplete="off" id="lastname" type="text" title="Last Name">
+                                        value="" autocomplete="off" id="lastname" type="text" title="Last Name"
+                                        pattern="[a-zA-Z\s]+">
                                 </div>
                             </div>
-    
+
                             <div>
                                 <h2 class="uppercase tracking-widest text-base mb-4" role="heading" aria-level="2">
                                     Sign In Information
                                 </h2>
                             </div>
-    
+
                             <div class="field mb-3">
-                                <label class="label" for="email">
+                                <label class="label" for="register-email">
                                     <span>Email</span>
                                 </label>
                                 <div class="control">
-                                    <input data-test="register-email" name="email" class="form-input" required=""
-                                        value="" autocomplete="off" id="email" type="email" title="Email">
+                                    <input data-test="register-email" name="register-email" class="form-input"
+                                        required="" value="" autocomplete="off" id="register-email"
+                                        type="email" title="Email"
+                                        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
                                 </div>
                             </div>
-    
+
                             <div class="field mb-3">
                                 <label class="label" for="password">
                                     <span>Password</span>
                                 </label>
                                 <div class="control">
-                                    <input data-test="register-password" name="password" class="form-input" required=""
-                                        value="" autocomplete="off" id="password" type="password" title="Password">
+                                    <input data-test="login-password" name="password" class="form-input" required=""
+                                        autocomplete="off" id="pass" title="Password" type="password"
+                                        pattern="^(?=.*[a-zA-Z])(?=.*\d).+$">
                                 </div>
                             </div>
-    
+
                             <div class="field mb-6">
                                 <label class="label" for="password_confirmation">
                                     <span>Confirm Password</span>
@@ -140,7 +148,7 @@
                                         id="password_confirmation" type="password" title="Confirm Password">
                                 </div>
                             </div>
-    
+
                             <div class="flex items-center">
                                 <input type="hidden" name="subscribed" value="0">
                                 <input id="subscribed" name="subscribed" data-test="register-newsletter" type="checkbox"
@@ -148,7 +156,7 @@
                                     class="w-4 h-4 text-green-600 rounded focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 mr-4">
                                 <label for="subscribed" class="m-0 text-gray-950">Sign up for a Newsletter</label>
                             </div>
-    
+
                             <div class="actions-toolbar flex self-end">
                                 <button type="submit" data-test="register-submit"
                                     class="btn bg-green-700 hover:bg-green-500 active:bg-green-900 disabled:opacity-75">
