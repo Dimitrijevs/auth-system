@@ -9,7 +9,7 @@
 @endif
 
 @section('content')
-    <div class="container mt-6 mb-0 font-bold lg:mt-8 text-3xl flex mb-2 items-end">
+    <div class="container mt-6 mb-0 font-bold lg:mt-0 text-3xl flex mb-2 items-end">
         <div class="w-1/2 mr-2">
             <h1 class="text-gray-900 page-title title-font inline-block mt-8">
                 <span class="base" data-ui-id="page-title-wrapper">
@@ -17,7 +17,7 @@
                 </span>
             </h1>
         </div>
-        <div class="pl-2">
+        <div class="">
             <h1 class="text-gray-900 page-title title-font inline-block mt-8">
                 <span class="base" data-ui-id="page-title-wrapper">
                     Create new custom account
@@ -29,22 +29,20 @@
     <div class="columns">
         <div class="column main">
             <div id="customer-login-container" class="login-container">
-                <div class="w-full md:w-1/2 card mr-4">
-                    <div aria-labelledby="block-customer-login-heading">
+                <div class="w-full md:w-1/2 mr-4">
+                    <div aria-labelledby="block-customer-login-heading" class="card">
                         <form class="form form-login" action="{{ url('login') }}" method="post" id="customer-login-form">
                             @csrf
 
                             <fieldset class="fieldset login">
-                                <legend class="mb-3">
-                                    <h2 class="text-xl font-medium title-font text-primary">
-                                        Login
-                                    </h2>
-                                </legend>
-                                <div class="text-secondary-darker mb-4">
+                                <h6 class="uppercase tracking-widest text-base mb-4">
+                                    Login
+                                </h6>
+                                <div class="text-gray-600 mb-4 tracking-wider w-3/5">
                                     If you have an account, sign in with your email address.
                                 </div>
-                                <div class="field">
-                                    <label class="label" for="email">
+                                <div class="field mb-3">
+                                    <label class="label tracking-wider" for="email">
                                         <span>Email</span>
                                     </label>
                                     <div class="control">
@@ -61,13 +59,14 @@
                                             autocomplete="off" id="pass" title="Password" type="password">
                                     </div>
                                 </div>
-                                <div class="actions-toolbar flex justify-between pt-6 pb-2 items-center">
+                                <div class="actions-toolbar flex justify-between items-center">
                                     <button data-test="login-submit" type="submit"
                                         class="btn bg-green-700 hover:bg-green-500 active:bg-green-900 disabled:opacity-75"
                                         name="send">
                                         <span>Sign In</span>
                                     </button>
-                                    <a class="underline text-secondary" href="#">
+                                    <a class="underline text-gray-500 hover:text-green-600 active:text-green-800 tracking-wider"
+                                        href="#">
                                         <span>Forgot Your Password?</span>
                                     </a>
                                 </div>
@@ -75,16 +74,16 @@
                         </form>
                     </div>
                 </div>
+
                 <div class="card w-full md:w-1/2 my-8 md:my-0">
                     <form class="form form-login" action="{{ url('register') }}" method="post" id="customer-register-form">
                         @csrf
 
                         <div>
-                            <h2 class="text-xl font-medium title-font mb-3 text-primary" role="heading" aria-level="2">
+                            <h6 class="uppercase tracking-widest text-base mb-4" role="heading" aria-level="2">
                                 Personal Information
-                            </h2>
+                            </h6>
                         </div>
-
                         <div class="field mb-3">
                             <label class="label" for="firstname">
                                 <span>First Name</span>
@@ -106,7 +105,7 @@
                         </div>
 
                         <div>
-                            <h2 class="text-xl font-medium title-font mb-3 text-primary" role="heading" aria-level="2">
+                            <h2 class="uppercase tracking-widest text-base mb-4" role="heading" aria-level="2">
                                 Sign In Information
                             </h2>
                         </div>
@@ -131,7 +130,7 @@
                             </div>
                         </div>
 
-                        <div class="field mb-3">
+                        <div class="field mb-6">
                             <label class="label" for="password_confirmation">
                                 <span>Confirm Password</span>
                             </label>
@@ -150,7 +149,7 @@
                             <label for="subscribed" class="m-0 text-gray-950">Sign up for a Newsletter</label>
                         </div>
 
-                        <div class="actions-toolbar pt-6 pb-2 flex self-end">
+                        <div class="actions-toolbar flex self-end">
                             <button type="submit" data-test="register-submit"
                                 class="btn bg-green-700 hover:bg-green-500 active:bg-green-900 disabled:opacity-75">
                                 <span>Create an Account</span>
