@@ -15,23 +15,27 @@
                 </div>
 
                 <!--Main Navigation-->
-                <div class="z-20 order-2 sm:order-1 lg:order-2 navigation lg:hidden">
+                <div class="z-20 order-2 sm:order-1 lg:order-2 navigation lg:hidden" x-data="{ open: false }">
                     <!-- mobile -->
-                    <div class="bg-container-lighter">
-                        <div class="flex items-baseline justify-between menu-icon">
-                            <div class="flex justify-end w-full">
-                                <button class="flex items-center justify-center cursor-pointer">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke="currentColor" class="p-3 block" width="48" height="48">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M4 6h16M4 12h16M4 18h16"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
+                    <div class="flex items-center justify-between p-4">
+                        <button class="flex items-center justify-center cursor-pointer" @click="open = !open">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" class="block w-8 h-8 text-gray-700">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </button>
                     </div>
-
-                    
+                    <div x-show="open" class="absolute flex flex-col bg-white p-3 shadow">
+                        <nav class="w-full flex flex-col space-y-2">
+                            <a href="#" class="block py-2 px-4 text-base text-gray-950 uppercase hover:text-green-600 active:text-green-800 tracking-widest">What's New</a>
+                            <a href="#" class="block py-2 px-4 text-base text-gray-950 uppercase hover:text-green-600 active:text-green-800 tracking-widest">Women</a>
+                            <a href="#" class="block py-2 px-4 text-base text-gray-950 uppercase hover:text-green-600 active:text-green-800 tracking-widest">Men</a>
+                            <a href="#" class="block py-2 px-4 text-base text-gray-950 uppercase hover:text-green-600 active:text-green-800 tracking-widest">Gear</a>
+                            <a href="#" class="block py-2 px-4 text-base text-gray-950 uppercase hover:text-green-600 active:text-green-800 tracking-widest">Training</a>
+                            <a href="#" class="block py-2 px-4 text-base text-gray-950 uppercase hover:text-green-600 active:text-green-800 tracking-widest">Sale</a>
+                        </nav>
+                    </div>
                 </div>
 
                 <div class="z-20 order-2 sm:order-1 lg:order-2 navigation hidden lg:flex">
@@ -105,8 +109,8 @@
                         class="relative inline-block ml-1 no-underline sm:ml-3 text-gray-950 hover:text-green-600 active:text-green-800"
                         href="#">
                         <span class="sr-only label">Cart</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                            class="w-8 h-8 md:h-6 md:w-6" width="25" height="25">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor" class="w-8 h-8 md:h-6 md:w-6" width="25" height="25">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z">
                             </path>
