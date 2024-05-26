@@ -10,7 +10,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- JavaScript -->
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/validation.js') }}"></script>
 
-    {{-- temporary --}}
+    {{-- test --}}
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 </head>
