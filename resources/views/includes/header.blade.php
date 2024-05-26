@@ -8,7 +8,7 @@
                     <a class="flex items-center justify-center text-xl font-medium tracking-wide text-gray-800
         no-underline hover:no-underline font-title"
                         href="{{ url('/') }}" title="" aria-label="store logo">
-                        <img src="{{ asset('images/logo.svg') }}" class="mr-4" title="pineapple." alt=""
+                        <img src="{{ asset('images/logo.png') }}" class="mr-4" title="pineapple." alt=""
                             width="24" height="5">
                         <p class="mt-4 text-base">pineapple.</p>
                     </a>

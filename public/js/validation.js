@@ -21,15 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
             emailError.classList.add('hidden');
         }
 
-        if (passwordValue.length < 8) {
-            passwordError.classList.remove('hidden');
-            passwordInput.focus();
-            return;
-        } else {
-            passwordError.classList.add('hidden');
-        }
-
-        if (!passwordRegex.test(passwordValue)) {
+        if (passwordValue.length < 8 || !passwordRegex.test(passwordValue)) {
             passwordError.classList.remove('hidden');
             passwordInput.focus();
             return;
@@ -49,6 +41,8 @@ document.addEventListener('DOMContentLoaded', function () {
         let passwordInput = document.getElementById('register-password');
         let passwordConfirmInput = document.getElementById('password_confirmation');
 
+        let firstNameError = document.getElementById('register-firstname-error');
+        let lastNameError = document.getElementById('register-lastname-error');
         let emailError = document.getElementById('register-email-error');
         let passwordError = document.getElementById('register-password-error');
         let passwordConfirmError = document.getElementById('register-password-confirmation-error');
@@ -61,6 +55,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         let passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d).+$/;
+        let nameRegex = /^[a-zA-Z]+$/;
+
+        if (!nameRegex.test(firstNameValue)) {
+            firstNameError.classList.remove('hidden');
+            firstNameInput.focus();
+            return;
+        } else {
+            firstNameError.classList.add('hidden');
+        }
+
+        if (!nameRegex.test(lastNameValue)) {
+            lastNameError.classList.remove('hidden');
+            lastNameInput.focus();
+            return;
+        } else {
+            lastNameError.classList.add('hidden');
+        }
 
         if (!emailRegex.test(emailValue)) {
             emailError.classList.remove('hidden');
@@ -70,15 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
             emailError.classList.add('hidden');
         }
 
-        if (passwordValue.length < 8) {
-            passwordError.classList.remove('hidden');
-            passwordInput.focus();
-            return;
-        } else {
-            passwordError.classList.add('hidden');
-        }
-
-        if (!passwordRegex.test(passwordValue)) {
+        if (passwordValue.length < 8 || !passwordRegex.test(passwordValue)) {
             passwordError.classList.remove('hidden');
             passwordInput.focus();
             return;
@@ -94,7 +97,6 @@ document.addEventListener('DOMContentLoaded', function () {
             passwordConfirmError.classList.add('hidden');
         }
 
-        console.log(event.target)
         event.target.form.submit();
     }
     );
